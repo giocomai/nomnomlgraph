@@ -16,4 +16,7 @@ Imports:
     dplyr,
     glue,
     nomnoml,
+    rlang,
     stringr
+Suggests: 
+    tibble

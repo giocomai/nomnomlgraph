@@ -32,6 +32,7 @@
 #'   "rounded". Value is passed to `nomnoml` as "edges".
 #'
 #' @inheritParams nomnoml::nomnoml
+#' @importFrom rlang .data
 #'
 #' @return An object with class `nomnoml` and `htmlwidget`. By default, it the
 #'   diagram is printed.
@@ -102,20 +103,19 @@ nn_graph <- function(nodes,
     dplyr::left_join(
       y = nodes |>
         dplyr::rename(
-          from_text = text,
-          from_classifier = classifier
+          from_text = .data[["text"]],
+          from_classifier = .data[["classifier"]]
         ),
       by = c("from" = "id")
     ) |>
     dplyr::left_join(
       y = nodes |>
         dplyr::rename(
-          to_text = text,
-          to_classifier = classifier
+          to_text = .data[["text"]],
+          to_classifier = .data[["classifier"]]
         ),
       by = c("to" = "id")
     )
-
 
   base_nomnoml <- pre_df |>
     glue::glue_data("[{from_classifier}{from_text}]{association}[{to_classifier}{to_text}]") |>
