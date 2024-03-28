@@ -9,10 +9,10 @@ knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "",
   fig.path = "man/figures/README-"
-  #out.width = "100%"
+  # out.width = "100%"
 )
 library(nomnoml)
-#knitr::knit_engines$set(nomnoml = nomnoml:::knit_nomnoml)
+# knitr::knit_engines$set(nomnoml = nomnoml:::knit_nomnoml)
 ```
 
 # nomnomlgraph
@@ -50,21 +50,25 @@ First, you will need a data frame with nodes:
 
 ```{r nodes}
 library("nomnomlgraph")
-nodes <- tibble::tribble(~id, ~text, 
-                         1, "Starting point",
-                         2, "Other starting point",
-                         3, "This is where things merge",
-                         4, "This is where things go")
+nodes <- tibble::tribble(
+  ~id, ~text,
+  1, "Starting point",
+  2, "Other starting point",
+  3, "This is where things merge",
+  4, "This is where things go"
+)
 knitr::kable(nodes)
 ```
 
 Then one with edges:
 
 ```{r edges}
-edges <- tibble::tribble(~from, ~to, ~association,
-                         1, 3, "-", 
-                         2, 3, "-",
-                         3, 4, "->")
+edges <- tibble::tribble(
+  ~from, ~to, ~association,
+  1, 3, "-",
+  2, 3, "-",
+  3, 4, "->"
+)
 
 knitr::kable(edges)
 ```
@@ -72,42 +76,48 @@ knitr::kable(edges)
 Et voilà:
 
 ```{r basic_nomnoml, eval = FALSE, echo=TRUE}
-
-nn_graph(nodes = nodes, 
-         edges = edges)
-
+nn_graph(
+  nodes = nodes,
+  edges = edges
+)
 ```
 
 ```{r basic_nomnoml_hidden, eval = TRUE, include=TRUE, echo = FALSE}
-nn_graph(nodes = nodes, 
-         edges = edges,
-         width = 400,
-         height = 200,
-         svg = TRUE)
+nn_graph(
+  nodes = nodes,
+  edges = edges,
+  width = 400,
+  height = 200,
+  svg = TRUE
+)
 ```
 
 To which you can add a bunch of customisations, see `?nn_graph()` for details. E.g. 
 
 ```{r custom_nomnoml, eval = FALSE}
-nn_graph(nodes = nodes, 
-         edges = edges,
-         fill = "#fdf6e3",
-         edgesStyle = "rounded", 
-         font = "Roboto Condensed",
-         fillArrows = "true",
-         svg = TRUE)
+nn_graph(
+  nodes = nodes,
+  edges = edges,
+  fill = "#fdf6e3",
+  edgesStyle = "rounded",
+  font = "Roboto Condensed",
+  fillArrows = "true",
+  svg = TRUE
+)
 ```
 
 ```{r custom_nomnoml_hidden, eval = TRUE, echo = FALSE}
-nn_graph(nodes = nodes, 
-         edges = edges,
-         fill = "#fdf6e3",
-         edgesStyle = "rounded", 
-         font = "Roboto Condensed",
-         fillArrows = "true",
-         width = 400,
-         height = 200,
-         svg = TRUE)
+nn_graph(
+  nodes = nodes,
+  edges = edges,
+  fill = "#fdf6e3",
+  edgesStyle = "rounded",
+  font = "Roboto Condensed",
+  fillArrows = "true",
+  width = 400,
+  height = 200,
+  svg = TRUE
+)
 ```
 
 
@@ -116,44 +126,49 @@ nn_graph(nodes = nodes,
 
 ```{r nodes_more}
 library("nomnomlgraph")
-nodes <- tibble::tribble(~id, ~text, ~classifier,
-                         1, "Partner X", "actor",
-                         2, "Partner Y", "actor",
-                         3, "Partner Z", "actor",
-                         4, "Initiator", "sender",
-                         5, "Do something together", "",
-                         6, "Quality control", "choice", 
-                         7, "Additional fixes", "", 
-                         8, "Launch!", "transceiver")
+nodes <- tibble::tribble(
+  ~id, ~text, ~classifier,
+  1, "Partner X", "actor",
+  2, "Partner Y", "actor",
+  3, "Partner Z", "actor",
+  4, "Initiator", "sender",
+  5, "Do something together", "",
+  6, "Quality control", "choice",
+  7, "Additional fixes", "",
+  8, "Launch!", "transceiver"
+)
 knitr::kable(nodes)
 ```
 
 Then one with edges:
 
 ```{r edges_more}
-edges <- tibble::tribble(~from, ~to, ~association,
-                         4, 5, "-",
-                         1, 5, "-", 
-                         2, 5, "-",
-                         3, 5, "-",
-                         5, 6, "->",
-                         6, 7, "No ->",
-                         7, 6, "-->", 
-                         6, 8, "Yes! ->")
+edges <- tibble::tribble(
+  ~from, ~to, ~association,
+  4, 5, "-",
+  1, 5, "-",
+  2, 5, "-",
+  3, 5, "-",
+  5, 6, "->",
+  6, 7, "No ->",
+  7, 6, "-->",
+  6, 8, "Yes! ->"
+)
 
 knitr::kable(edges)
 ```
 
 
 ```{r diagram_with_more}
-nn_graph(nodes = nodes, 
-         edges = edges,
-         edgesStyle = "rounded", 
-         font = "Roboto Condensed",
-         svg = TRUE,
-         width = 600,
-         height = 300,
-         )
+nn_graph(
+  nodes = nodes,
+  edges = edges,
+  edgesStyle = "rounded",
+  font = "Roboto Condensed",
+  svg = TRUE,
+  width = 600,
+  height = 300,
+)
 ```
 
 ## Finalise on nomnoml.com
@@ -161,11 +176,12 @@ nn_graph(nodes = nodes,
 If you enable set the "output" parameter to "code", you will get a chunk of text that you can paste directly [on nomnoml.com](https://nomnoml.com/#view/%23direction%3A%20down%0A%23edges%3A%20rounded%0A%23lineWidth%3A%201%0A%23fill%3A%20%23FEFEFF%0A%23zoom%3A%204%0A%23arrowSize%3A%201%0A%23bendSize%3A%200.3%0A%23gutter%3A%205%0A%23edgeMargin%3A%200%0A%23fillArrows%3A%20false%0A%23font%3A%20sans%0A%23fontSize%3A%2012%0A%23leading%3A%201.25%0A%23padding%3A%208%0A%23spacing%3A%2040%0A%23stroke%3A%20%2333322E%0A%23title%3A%20filename%0A%0A%5B%3Csender%3EInitiator%5D-%5BDo%20something%20together%5D%0A%5B%3Cactor%3EPartner%20X%5D-%5BDo%20something%20together%5D%0A%5B%3Cactor%3EPartner%20Y%5D-%5BDo%20something%20together%5D%0A%5B%3Cactor%3EPartner%20Z%5D-%5BDo%20something%20together%5D%0A%5BDo%20something%20together%5D-%3E%5B%3Cchoice%3EQuality%20control%5D%0A%5B%3Cchoice%3EQuality%20control%5DNo%20-%3E%5BAdditional%20fixes%5D%0A%5BAdditional%20fixes%5D--%3E%5B%3Cchoice%3EQuality%20control%5D%0A%5B%3Cchoice%3EQuality%20control%5DYes!%20-%3E%5B%3Ctransceiver%3ELaunch!%5D) for further adjustments. 
 
 ```{r nn_code}
-nn_graph(nodes = nodes, 
-         edges = edges,
-         output = "code",
-         edgesStyle = "rounded"
-         ) |> 
+nn_graph(
+  nodes = nodes,
+  edges = edges,
+  output = "code",
+  edgesStyle = "rounded"
+) |>
   cat()
 ```
 
