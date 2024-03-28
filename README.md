@@ -17,17 +17,23 @@ To create a `nomnoml` diagram with `nomnomlgraph` you will need two data
 frames: one with *nodes*, the other with *edges*, in line with the
 structure of data tyipically used to generate network graphs.
 
-This facilitate cooperation across teams with members that may be
+This facilitates cooperation across teams with members that may be
 intimidated by `nomnoml` syntax and will feel at home in front of a
 spreadsheet, or even as a shared spreasheet on Google Drive.
 
 ## Installation
 
-You can install the development version of nomnomlgraph like so:
+You can install the development version of `nomnomlgraph` from GitHub:
 
 ``` r
 # install.packages("remotes")
 remotes::install_github("giocomai/nomnomlgraph")
+```
+
+or from R universe:
+
+``` r
+install.packages('nomnomlgraph', repos = c('https://giocomai.r-universe.dev', 'https://cloud.r-project.org'))
 ```
 
 ## How to use
@@ -172,7 +178,7 @@ nn_graph(nodes = nodes,
          edges = edges,
          output = "code",
          edgesStyle = "rounded"
-         ) %>% 
+         ) |> 
   cat()
 #direction: down
 #edges: rounded

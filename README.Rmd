@@ -26,16 +26,22 @@ The goal of `nomnomlgraph` is to enable the creation of basic diagrams such as t
 
 To create a `nomnoml` diagram with `nomnomlgraph` you will need two data frames: one with *nodes*, the other with *edges*, in line with the structure of data tyipically used to generate network graphs.
 
-This facilitate cooperation across teams with members that may be intimidated by `nomnoml` syntax and will feel at home in front of a spreadsheet, or even as a shared spreasheet on Google Drive.
+This facilitates cooperation across teams with members that may be intimidated by `nomnoml` syntax and will feel at home in front of a spreadsheet, or even as a shared spreasheet on Google Drive.
 
 
 ## Installation
 
-You can install the development version of nomnomlgraph like so:
+You can install the development version of `nomnomlgraph` from GitHub:
 
 ``` r
 # install.packages("remotes")
 remotes::install_github("giocomai/nomnomlgraph")
+```
+
+or from R universe:
+
+``` r
+install.packages('nomnomlgraph', repos = c('https://giocomai.r-universe.dev', 'https://cloud.r-project.org'))
 ```
 
 ## How to use
@@ -154,12 +160,12 @@ nn_graph(nodes = nodes,
 
 If you enable set the "output" parameter to "code", you will get a chunk of text that you can paste directly [on nomnoml.com](https://nomnoml.com/#view/%23direction%3A%20down%0A%23edges%3A%20rounded%0A%23lineWidth%3A%201%0A%23fill%3A%20%23FEFEFF%0A%23zoom%3A%204%0A%23arrowSize%3A%201%0A%23bendSize%3A%200.3%0A%23gutter%3A%205%0A%23edgeMargin%3A%200%0A%23fillArrows%3A%20false%0A%23font%3A%20sans%0A%23fontSize%3A%2012%0A%23leading%3A%201.25%0A%23padding%3A%208%0A%23spacing%3A%2040%0A%23stroke%3A%20%2333322E%0A%23title%3A%20filename%0A%0A%5B%3Csender%3EInitiator%5D-%5BDo%20something%20together%5D%0A%5B%3Cactor%3EPartner%20X%5D-%5BDo%20something%20together%5D%0A%5B%3Cactor%3EPartner%20Y%5D-%5BDo%20something%20together%5D%0A%5B%3Cactor%3EPartner%20Z%5D-%5BDo%20something%20together%5D%0A%5BDo%20something%20together%5D-%3E%5B%3Cchoice%3EQuality%20control%5D%0A%5B%3Cchoice%3EQuality%20control%5DNo%20-%3E%5BAdditional%20fixes%5D%0A%5BAdditional%20fixes%5D--%3E%5B%3Cchoice%3EQuality%20control%5D%0A%5B%3Cchoice%3EQuality%20control%5DYes!%20-%3E%5B%3Ctransceiver%3ELaunch!%5D) for further adjustments. 
 
-```{r}
+```{r nn_code}
 nn_graph(nodes = nodes, 
          edges = edges,
          output = "code",
          edgesStyle = "rounded"
-         ) %>% 
+         ) |> 
   cat()
 ```
 
@@ -172,7 +178,6 @@ nn_graph(nodes = nodes,
 For more details, see the documentation of the `nomnoml` package for R: https://github.com/rstudio/nomnoml/
 
 The original nomnoml: https://nomnoml.com/
-
 
 
 ## Licensing

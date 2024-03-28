@@ -98,17 +98,17 @@ nn_graph <- function(nodes,
     false = stringr::str_c("<", nodes[["classifier"]], ">")
   )
 
-  pre_df <- edges %>%
+  pre_df <- edges |>
     dplyr::left_join(
-      y = nodes %>%
+      y = nodes |>
         dplyr::rename(
           from_text = text,
           from_classifier = classifier
         ),
       by = c("from" = "id")
-    ) %>%
+    ) |>
     dplyr::left_join(
-      y = nodes %>%
+      y = nodes |>
         dplyr::rename(
           to_text = text,
           to_classifier = classifier
@@ -117,8 +117,8 @@ nn_graph <- function(nodes,
     )
 
 
-  base_nomnoml <- pre_df %>%
-    glue::glue_data("[{from_classifier}{from_text}]{association}[{to_classifier}{to_text}]") %>%
+  base_nomnoml <- pre_df |>
+    glue::glue_data("[{from_classifier}{from_text}]{association}[{to_classifier}{to_text}]") |>
     paste(collapse = "\n")
 
   code_v <- stringr::str_c(c(

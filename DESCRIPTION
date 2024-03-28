@@ -1,21 +1,19 @@
 Package: nomnomlgraph
 Title: Create nomnoml diagrams in R based on data frames with nodes and edges
-Version: 0.0.0.9000
+Version: 0.0.0.9001
 Authors@R: 
     c(person(given = "Giorgio",
              family = "Comai",
              role = c("aut", "cre", "cph"),
              email = "g@giorgiocomai.eu",
              comment = c(ORCID = "0000-0002-0515-9542")))
-Description: Create nomnoml diagrams in R based on data frames with nodes and edges
+Description: Create nomnoml diagrams in R based on data frames with nodes and edges.
 License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.2.1
+RoxygenNote: 7.3.1
 Imports: 
     dplyr,
     glue,
-    magrittr,
     nomnoml,
-    stringr,
-    tibble
+    stringr
